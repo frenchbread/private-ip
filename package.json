@@ -1,12 +1,12 @@
 {
   "name": "private-ip",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Check if IP address is private.",
   "main": "index.js",
   "scripts": {
     "build": "node_modules/babel-cli/bin/babel.js src --out-dir lib",
     "test": "npm run build && ava",
-    "prepublish": "npm run build"
+    "prepublish": "npm build"
   },
   "repository": {
     "type": "git",
