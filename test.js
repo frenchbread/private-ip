@@ -1,5 +1,5 @@
-import test from 'ava';
-import isPrivate from './';
+import test from 'ava'
+import isPrivate from './'
 
 const publicIps = [
   '164.101.185.82',
@@ -14,7 +14,7 @@ const publicIps = [
   '46.192.247.73',
   '227.202.96.196',
   '111.211.73.40'
-];
+]
 
 const privateIps = [
   '10.0.0.0',
@@ -24,18 +24,16 @@ const privateIps = [
   '172.31.255.255',
   '192.168.0.0',
   '192.168.255.255'
-];
+]
 
 publicIps.forEach((ip) => {
   test('IP should be public', (t) => {
-
-    t.falsy(isPrivate(ip));
-  });
-});
+    t.falsy(isPrivate(ip))
+  })
+})
 
 privateIps.forEach((ip) => {
   test('IP should be private', (t) => {
-
-    t.truthy(isPrivate(ip), true);
-  });
-});
+    t.truthy(isPrivate(ip), true)
+  })
+})
