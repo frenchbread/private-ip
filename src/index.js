@@ -1,4 +1,6 @@
-var Netmask = require('netmask').Netmask
+const Netmask = require('netmask').Netmask
+const isIp = require('is-ip')
+
 function netmaskCheck (params) {
   let privateRanges = [
     '0.0.0.0/8',
@@ -29,9 +31,27 @@ function netmaskCheck (params) {
   for (let r of privateRanges) {
     if (r.contains(params)) return true
   }
-  return false
 }
 
-export default (ip) => (
-  netmaskCheck(ip)
-)
+function ipv6Check (params) {
+  return /^::$/.test(params) ||
+    /^::1$/.test(params) ||
+    /^::f{4}:([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/.test(params) ||
+    /^::f{4}:0.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/.test(params) ||
+    /^64:ff9b::([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/.test(params) ||
+    /^100::([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4})$/.test(params) ||
+    /^2001::([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4})$/.test(params) ||
+    /^2001:2[0-9a-fA-F]:([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4})$/.test(params) ||
+    /^2001:db8:([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4})$/.test(params) ||
+    /^2002:([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4}):?([0-9a-fA-F]{0,4})$/.test(params) ||
+    /^f[c-d]([0-9a-fA-F]{2,2}):/i.test(params) ||
+    /^fe[8-9a-bA-B][0-9a-fA-F]:/i.test(params) ||
+    /^ff([0-9a-fA-F]{2,2}):/i.test(params)
+}
+
+export default (ip) => {
+  if (isIp.v4(ip) || ip.startsWith('0')) {
+    return netmaskCheck(ip)
+  }
+  return ipv6Check(ip)
+}
