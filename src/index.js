@@ -31,6 +31,7 @@ function netmaskCheck (params) {
   for (let r of privateRanges) {
     if (r.contains(params)) return true
   }
+  return false
 }
 
 function ipv6Check (params) {
