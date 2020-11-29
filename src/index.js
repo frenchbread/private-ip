@@ -1,7 +1,7 @@
 const Netmask = require('netmask').Netmask
 const isIp = require('is-ip')
 
-function netmaskCheck (params) {
+function ipv4Check (params) {
   let privateRanges = [
     '0.0.0.0/8',
     '10.0.0.0/8',
@@ -31,6 +31,7 @@ function netmaskCheck (params) {
   for (let r of privateRanges) {
     if (r.contains(params)) return true
   }
+  return false
 }
 
 function ipv6Check (params) {
@@ -51,7 +52,7 @@ function ipv6Check (params) {
 
 export default (ip) => {
   if (isIp.v4(ip) || ip.startsWith('0')) {
-    return netmaskCheck(ip)
+    return ipv4Check(ip)
   }
   return ipv6Check(ip)
 }
