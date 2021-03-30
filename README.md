@@ -21,29 +21,28 @@ $ yarn add private-ip
 ### Usage
 
 ```js
+const is_ip_private = require('private-ip')
 
-import isIpPrivate from 'private-ip';
-
-isIpPrivate('10.0.0.0');
+is_ip_private('10.0.0.0');
 // => true
 
-isIpPrivate('101.0.26.90');
+is_ip_private('101.0.26.90');
 // => false
 
 ```
 
-### Dev
+### Development
 
 ##### Tests
 
 ```bash
-$ npm run test
+$ yarn run test
 ```
 
 ##### Build
 
 ```bash
-$ npm run build
+$ yarn run build
 ```
 
 ### Authors
@@ -63,4 +62,3 @@ $ npm run build
 ### IANA Reserved IP list
 
 https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry-1.csv
-
