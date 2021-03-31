@@ -51,7 +51,7 @@ function ipv6Check (params) {
 }
 
 export default (ip) => {
-  if (isIp.v4(ip) || ip.startsWith('0')) {
+  if (isIp.v4(ip) || ip.startsWith('0') || ip.split('.').length === 4) {
     return ipv4Check(ip)
   }
   return ipv6Check(ip)
