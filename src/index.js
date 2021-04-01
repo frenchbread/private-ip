@@ -1,5 +1,5 @@
-const Netmask = require('netmask').Netmask
-const isIp = require('is-ip')
+const Netmask = require('netmask').Netmask;
+const ipRegex = require('ip-regex');
 
 function ipv4Check (params) {
   let privateRanges = [
@@ -29,9 +29,12 @@ function ipv4Check (params) {
     '255.255.255.255/32'
   ].map(b => new Netmask(b))
   for (let r of privateRanges) {
-    if (r.contains(params)) return true
+    if (r.contains(params)) return true;
   }
-  return false
+  if(/(^0\.)|(^10\.)|(^100\.6[4-9]\.)|(^100\.[7-9]\d\.)|(^100\.1[0-1]\d\.)|(^100\.12[0-7]\.)|(^127\.)|(^169\.254\.)|(^172\.1[6-9]\.)|(^172\.2[0-9]\.)|(^172\.3[0-1]\.)|(^192\.0\.0\.)|(^192\.0\.2\.)|(^192\.88\.99\.)|(^192\.168\.)|(^198\.1[8-9]\.)|(^198\.51\.100\.)|(^203.0\.113\.)|(^225\.)|(^23[0-9]\.)|(^24[0-9]\.)|(^25[0-5]\.)|(^192\.[0-9]{0,3}\.)/.test(params)){
+    return true;
+  }
+  return false;
 }
 
 function ipv6Check (params) {
@@ -51,8 +54,12 @@ function ipv6Check (params) {
 }
 
 export default (ip) => {
-  if (isIp.v4(ip) || ip.startsWith('0')) {
-    return ipv4Check(ip)
+  if(ipRegex.v6().test(ip)){
+    return ipv6Check(ip);
   }
-  return ipv6Check(ip)
+  else if (ipRegex().test(ip) || ip.startsWith('0')){
+    return ipv4Check(ip);
+  }else{
+    return false;
+  }
 }
