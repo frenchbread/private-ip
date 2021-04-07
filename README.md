@@ -1,21 +1,16 @@
-# private-ip
+private-ip
+--
 
 > Check if IP address is private.
-
-[![NPM](https://nodei.co/npm/private-ip.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/private-ip/)
-
-[![NPM](https://nodei.co/npm-dl/private-ip.png)](https://nodei.co/npm/private-ip/)
-
-
 
 ### Installation
 
 ```bash
-$ npm install private-ip --save
+❯ npm install private-ip --save
 
 or
 
-$ yarn add private-ip
+❯ yarn add private-ip
 ```
 
 ### Usage
@@ -23,10 +18,10 @@ $ yarn add private-ip
 ```js
 const is_ip_private = require('private-ip')
 
-is_ip_private('10.0.0.0');
+is_ip_private('10.0.0.0')
 // => true
 
-is_ip_private('101.0.26.90');
+is_ip_private('101.0.26.90')
 // => false
 
 ```
