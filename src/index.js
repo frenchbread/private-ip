@@ -1,41 +1,37 @@
-const Netmask = require('netmask').Netmask
-const is_ip = require('is-ip')
+const Netmask = require('netmask').Netmask;
+const ipRegex = require('ip-regex');
 
-const PRIVATE_IP_RANGES = [
-  '0.0.0.0/8',
-  '10.0.0.0/8',
-  '100.64.0.0/10',
-  '127.0.0.0/8',
-  '169.254.0.0/16',
-  '172.16.0.0/12',
-  '192.0.0.0/24',
-  '192.0.0.0/29',
-  '192.0.0.8/32',
-  '192.0.0.9/32',
-  '192.0.0.10/32',
-  '192.0.0.170/32',
-  '192.0.0.171/32',
-  '192.0.2.0/24',
-  '192.31.196.0/24',
-  '192.52.193.0/24',
-  '192.88.99.0/24',
-  '192.168.0.0/16',
-  '192.175.48.0/24',
-  '198.18.0.0/15',
-  '198.51.100.0/24',
-  '203.0.113.0/24',
-  '240.0.0.0/4',
-  '255.255.255.255/32'
-]
-
-function ipv4_check (ip_addr) {
-  const blocks = [...PRIVATE_IP_RANGES].map(ip_range => new Netmask(ip_range))
-
-  for (let r of blocks) {
-    if (r.contains(ip_addr)) return true
+function ipv4Check (params) {
+  let privateRanges = [
+    '0.0.0.0/8',
+    '10.0.0.0/8',
+    '100.64.0.0/10',
+    '127.0.0.0/8',
+    '169.254.0.0/16',
+    '172.16.0.0/12',
+    '192.0.0.0/24',
+    '192.0.0.0/29',
+    '192.0.0.8/32',
+    '192.0.0.9/32',
+    '192.0.0.10/32',
+    '192.0.0.170/32',
+    '192.0.0.171/32',
+    '192.0.2.0/24',
+    '192.31.196.0/24',
+    '192.52.193.0/24',
+    '192.88.99.0/24',
+    '192.168.0.0/16',
+    '192.175.48.0/24',
+    '198.18.0.0/15',
+    '198.51.100.0/24',
+    '203.0.113.0/24',
+    '240.0.0.0/4',
+    '255.255.255.255/32'
+  ].map(b => new Netmask(b))
+  for (let r of privateRanges) {
+    if (r.contains(params)) return true;
   }
-
-  return false
+  return false;
 }
 
 function ipv6_check (ip_addr) {
@@ -54,10 +50,13 @@ function ipv6_check (ip_addr) {
     /^ff([0-9a-fA-F]{2,2}):/i.test(ip_addr)
 }
 
-module.exports = ip_addr => {
-  if (is_ip.v4(ip_addr) || ip_addr.startsWith('0')) {
-    return ipv4_check(ip_addr)
+export default (ip) => {
+  if(ipRegex.v6().test(ip)){
+    return ipv6Check(ip);
   }
-
-  return ipv6_check(ip_addr)
+  else if (ipRegex().test(ip) || ip.startsWith('0')){
+    return ipv4Check(ip);
+  }else{
+    return false;
+  }
 }
