@@ -50,11 +50,8 @@ const priv_ips = [
   '0.255.255.255',
   '10.0.0.0',
   '10.0.0.1',
-  '010.000.000.001',
-  '100.127.255.254',
-  '100.127.255.255',
-  '100.64.0.0',
-  '100.64.0.1',
+  '10.0.0.01',
+  '10.0.0.001',
   '10.255.255.254',
   '10.255.255.255',
   '100.64.0.0',
@@ -175,6 +172,6 @@ const priv_ips = [
   'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff'
 ]
 
-pub_ips.forEach(ip => test(`IP ${ip.toString()} should be public`, t => t.false(is_ip_private(ip))))
+pub_ips.forEach(ip_addr => test(`IP ${ip_addr.toString()} should be public`, t => t.false(is_ip_private(ip_addr))))
 
-priv_ips.forEach(ip => test(`IP ${ip.toString()} should be private`, t => t.true(is_ip_private(ip))))
+priv_ips.forEach(ip_addr => test(`IP ${ip_addr.toString()} should be private`, t => t.true(is_ip_private(ip_addr))))
