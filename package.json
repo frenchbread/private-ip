@@ -42,12 +42,11 @@
   ],
   "devDependencies": {
     "ava": "^3.15.0",
-    "babel-cli": "^6.18.0",
-    "rimraf": "^3.0.2",
-    "standard": "^16.0.3"
+    "babel-cli": "^6.26.0",
+    "rimraf": "^3.0.2"
   },
   "dependencies": {
     "ip-regex": "^4.3.0",
-    "netmask": "^1.0.6"
+    "netmask": "^2.0.2"
   }
 }
