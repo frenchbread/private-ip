@@ -1,6 +1,6 @@
 {
   "name": "private-ip",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Check if IP address is private.",
   "main": "index.js",
   "repository": {
@@ -27,7 +27,6 @@
   ],
   "license": "MIT",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint src",
     "build": "npm run clean && ./node_modules/.bin/babel src --out-dir lib",
     "clean": "./node_modules/.bin/rimraf ./lib",
     "test": "npm run build && ava",
@@ -42,16 +41,12 @@
     "lan"
   ],
   "devDependencies": {
-    "ava": "^0.15.2",
-    "babel-cli": "^6.11.4",
-    "babel-eslint": "^7.2.3",
-    "babel-preset-latest": "^6.24.1",
-    "eslint": "^3.19.0",
-    "rimraf": "^2.6.1",
-    "standard": "^10.0.2"
+    "ava": "^3.15.0",
+    "babel-cli": "^6.26.0",
+    "rimraf": "^3.0.2"
   },
   "dependencies": {
     "ip-regex": "^4.3.0",
-    "netmask": "^2.0.1"
+    "netmask": "^2.0.2"
   }
 }

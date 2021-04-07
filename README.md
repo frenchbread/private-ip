@@ -1,49 +1,43 @@
-# private-ip
+private-ip
+--
 
 > Check if IP address is private.
-
-[![NPM](https://nodei.co/npm/private-ip.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/private-ip/)
-
-[![NPM](https://nodei.co/npm-dl/private-ip.png)](https://nodei.co/npm/private-ip/)
-
-
 
 ### Installation
 
 ```bash
-$ npm install private-ip --save
+❯ npm install private-ip --save
 
 or
 
-$ yarn add private-ip
+❯ yarn add private-ip
 ```
 
 ### Usage
 
 ```js
+const is_ip_private = require('private-ip')
 
-import isIpPrivate from 'private-ip';
-
-isIpPrivate('10.0.0.0');
+is_ip_private('10.0.0.0')
 // => true
 
-isIpPrivate('101.0.26.90');
+is_ip_private('101.0.26.90')
 // => false
 
 ```
 
-### Dev
+### Development
 
 ##### Tests
 
 ```bash
-$ npm run test
+$ yarn run test
 ```
 
 ##### Build
 
 ```bash
-$ npm run build
+$ yarn run build
 ```
 
 ### Authors
@@ -63,4 +57,3 @@ $ npm run build
 ### IANA Reserved IP list
 
 https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry-1.csv
-
