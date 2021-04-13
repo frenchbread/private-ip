@@ -28,10 +28,10 @@ const PRIVATE_IP_RANGES = [
   '255.255.255.255/32'
 ]
 
-function ipv4_check (ip_addr) {
-  const blocks = [...PRIVATE_IP_RANGES].map(ip_range => new Netmask(ip_range))
+const NETMASK_RANGES = PRIVATE_IP_RANGES.map(ip_range => new Netmask(ip_range))
 
-  for (let r of blocks) {
+function ipv4_check (ip_addr) {
+  for (let r of NETMASK_RANGES) {
     if (r.contains(ip_addr)) return true
   }
 
