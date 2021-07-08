@@ -3,6 +3,10 @@ private-ip
 
 > Check if IP address is private.
 
+### badges
+
+[![huntr](https://cdn.huntr.dev/huntr_security_badge_mono.svg)](https://huntr.dev)
+
 ### Installation
 
 ```bash
