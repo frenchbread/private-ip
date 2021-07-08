@@ -1,5 +1,7 @@
-const Netmask = require('netmask').Netmask
-const ip_regex = require('ip-regex')
+import { Netmask } from 'netmask'
+import ip_regex from 'ip-regex'
+import is_ip from 'is-ip'
+import { isValid as is_valid, parse, IPv4 } from 'ipaddr.js'
 
 const PRIVATE_IP_RANGES = [
   '0.0.0.0/8',
@@ -30,7 +32,7 @@ const PRIVATE_IP_RANGES = [
 
 const NETMASK_RANGES = PRIVATE_IP_RANGES.map(ip_range => new Netmask(ip_range))
 
-function ipv4_check (ip_addr) {
+function ipv4_check (ip_addr: string) {
   for (let r of NETMASK_RANGES) {
     if (r.contains(ip_addr)) return true
   }
@@ -38,7 +40,7 @@ function ipv4_check (ip_addr) {
   return false
 }
 
-function ipv6_check (ip_addr) {
+function ipv6_check (ip_addr: string) {
   return /^::$/.test(ip_addr) ||
     /^::1$/.test(ip_addr) ||
     /^::f{4}:([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})$/.test(ip_addr) ||
@@ -54,9 +56,13 @@ function ipv6_check (ip_addr) {
     /^ff([0-9a-fA-F]{2,2}):/i.test(ip_addr)
 }
 
-module.exports = ip_addr => {
-  if (ip_regex.v6().test(ip_addr)) return ipv6_check(ip_addr)
-  else if (ip_regex().test(ip_addr) || ip_addr.startsWith('0')) return ipv4_check(ip_addr)
+export default (ip: string) => {
+  if (is_valid(ip)) {
+    const parsed = parse(ip)
 
-  return false
+    if (parsed.kind() === 'ipv4') return ipv4_check((parsed as IPv4).toNormalizedString())
+    else if (parsed.kind() === 'ipv6') return ipv6_check(ip)
+  } else if (is_ip(ip) && ip_regex.v6().test(ip)) return ipv6_check(ip)
+
+  return undefined
 }

@@ -61,6 +61,9 @@ const priv_ips = [
   '127.0.0.0',
   '127.0.0.1',
   '127.0.0.01',
+  '127.1',
+  '127.0.1',
+  '127.000.000.1',
   '127.255.255.254',
   '127.255.255.255',
   '169.254.0.0',
@@ -134,8 +137,6 @@ const priv_ips = [
   '::',
   '::1',
   '::ffff:0.0.0.0',
-  '::ffff:0.0.255.255.255',
-  '::ffff:0.255.255.255.255',
   '::ffff:255.255.255.255',
   '64:ff9b::0.0.0.0',
   '64:ff9b::16.10.11.1',
@@ -143,7 +144,6 @@ const priv_ips = [
   '100::',
   '100::0:0:0:0',
   '100::1:eabc:0:2',
-  '100::ffff::',
   '100::ffff:ffff:ffff:ffff',
   '2001::',
   '2001::a:b:c',
@@ -169,9 +169,19 @@ const priv_ips = [
   'fc00::abc:1',
   'fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff',
   'ff00::',
-  'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff'
+  'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff',
+  '2130706433',
+  '0x7f000001',
+]
+
+const invalid_ips = [
+  '100::ffff::',
+  '::ffff:0.0.255.255.255',
+  '::ffff:0.255.255.255.255',
 ]
 
 pub_ips.forEach(ip_addr => test(`IP ${ip_addr.toString()} should be public`, t => t.false(is_ip_private(ip_addr))))
 
 priv_ips.forEach(ip_addr => test(`IP ${ip_addr.toString()} should be private`, t => t.true(is_ip_private(ip_addr))))
+
+invalid_ips.forEach(ip_addr => test(`IP ${ip_addr.toString()} should be undefined`, t => t.is(is_ip_private(ip_addr), undefined)))
