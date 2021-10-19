@@ -28,6 +28,9 @@ is_ip_private('10.0.0.0')
 is_ip_private('101.0.26.90')
 // => false
 
+is_ip_private('not.an.ip.com')
+// => undefined
+
 ```
 
 ### Development
