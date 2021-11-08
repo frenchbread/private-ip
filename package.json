@@ -3,6 +3,7 @@
   "version": "2.3.1",
   "description": "Check if IP address is private.",
   "main": "index.js",
+  "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/frenchbread/private-ip.git"
