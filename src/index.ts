@@ -56,7 +56,7 @@ function ipv6_check (ip_addr: string) {
     /^ff([0-9a-fA-F]{2,2}):/i.test(ip_addr)
 }
 
-export default (ip: string) => {
+export default (ip: string): boolean | undefined => {
   if (is_valid(ip)) {
     const parsed = parse(ip)
 
