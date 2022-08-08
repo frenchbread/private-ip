@@ -1,6 +1,6 @@
 {
   "name": "private-ip",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "description": "Check if IP address is private.",
   "main": "index.js",
   "types": "lib/index.d.ts",
