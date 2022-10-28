@@ -1,6 +1,6 @@
 import { Netmask } from 'netmask'
 import ip_regex from 'ip-regex'
-import is_ip from 'is-ip'
+import { isIP } from 'is-ip'
 import { isValid as is_valid, parse, IPv4 } from 'ipaddr.js'
 
 const PRIVATE_IP_RANGES = [
@@ -62,7 +62,7 @@ export default (ip: string) => {
 
     if (parsed.kind() === 'ipv4') return ipv4_check((parsed as IPv4).toNormalizedString())
     else if (parsed.kind() === 'ipv6') return ipv6_check(ip)
-  } else if (is_ip(ip) && ip_regex.v6().test(ip)) return ipv6_check(ip)
+  } else if (isIP(ip) && ip_regex.v6().test(ip)) return ipv6_check(ip)
 
   return undefined
 }

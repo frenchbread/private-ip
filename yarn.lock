@@ -554,10 +554,15 @@
   "resolved" "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz"
   "version" "2.0.4"
 
-"ip-regex@^4.0.0", "ip-regex@^4.3.0":
+"ip-regex@^4.3.0":
   "integrity" "sha512-B9ZWJxHHOHUhUjCPrMpLD4xEq35bUTClHM1S6CBU5ixQnkZmwipwgc96vAd7AAGM9TGHvJR+Uss+/Ak6UphK+Q=="
   "resolved" "https://registry.npmjs.org/ip-regex/-/ip-regex-4.3.0.tgz"
   "version" "4.3.0"
+
+"ip-regex@^5.0.0":
+  "integrity" "sha512-fOCG6lhoKKakwv+C6KdsOnGvgXnmgfmp0myi3bcNwj3qfwPAxRKWEuFhvEFF7ceYIz6+1jRZ+yguLFAmUNPEfw=="
+  "resolved" "https://registry.npmjs.org/ip-regex/-/ip-regex-5.0.0.tgz"
+  "version" "5.0.0"
 
 "ipaddr.js@^2.0.1":
   "integrity" "sha512-1qTgH9NG+IIJ4yfKs2e6Pp1bZg8wbDbKHT21HrLIeYBTRLgMYKnMTPAuI3Lcs61nfx5h1xlXnbJtH1kX5/d/ng=="
@@ -603,12 +608,12 @@
   dependencies:
     "is-extglob" "^2.1.1"
 
-"is-ip@^3.1.0":
-  "integrity" "sha512-35vd5necO7IitFPjd/YBeqwWnyDWbuLH9ZXQdMfDA8TEo7pv5X8yfrvVO3xbJbLUlERCMvf6X0hTUamQxCYJ9Q=="
-  "resolved" "https://registry.npmjs.org/is-ip/-/is-ip-3.1.0.tgz"
-  "version" "3.1.0"
+"is-ip@^4.0.0":
+  "integrity" "sha512-4B4XA2HEIm/PY+OSpeMBXr8pGWBYbXuHgjMAqrwbLO3CPTCAd9ArEJzBUKGZtk9viY6+aSfadGnWyjY3ydYZkw=="
+  "resolved" "https://registry.npmjs.org/is-ip/-/is-ip-4.0.0.tgz"
+  "version" "4.0.0"
   dependencies:
-    "ip-regex" "^4.0.0"
+    "ip-regex" "^5.0.0"
 
 "is-number@^7.0.0":
   "integrity" "sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng=="
