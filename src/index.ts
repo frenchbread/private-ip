@@ -1,6 +1,6 @@
 import { Netmask } from 'netmask'
 import ip_regex from 'ip-regex'
-import { isIP } from 'is-ip'
+import { isIP } from '@chainsafe/is-ip'
 import { isValid as is_valid, parse, IPv4 } from 'ipaddr.js'
 
 const PRIVATE_IP_RANGES = [
