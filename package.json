@@ -2,7 +2,8 @@
   "name": "private-ip",
   "version": "2.3.4",
   "description": "Check if IP address is private.",
-  "main": "index.js",
+  "exports": "./index.js",
+  "type": "module",
   "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
@@ -54,5 +55,8 @@
     "ipaddr.js": "^2.0.1",
     "@chainsafe/is-ip": "^2.0.1",
     "netmask": "^2.0.2"
+  },
+  "engines": {
+    "node": ">=14.16"
   }
 }

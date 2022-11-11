@@ -1,7 +1,8 @@
 import { Netmask } from 'netmask'
 import ip_regex from 'ip-regex'
 import { isIP } from '@chainsafe/is-ip'
-import { isValid as is_valid, parse, IPv4 } from 'ipaddr.js'
+import ipaddr, { IPv4 } from 'ipaddr.js'
+const { isValid: is_valid, parse } = ipaddr
 
 const PRIVATE_IP_RANGES = [
   '0.0.0.0/8',

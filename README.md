@@ -20,7 +20,7 @@ or
 ### Usage
 
 ```js
-const is_ip_private = require('private-ip')
+import is_ip_private from 'private-ip'
 
 is_ip_private('10.0.0.0')
 // => true
