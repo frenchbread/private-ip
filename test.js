@@ -1,5 +1,5 @@
-const test = require('ava')
-const is_ip_private = require('./')
+import test from 'ava'
+import is_ip_private from './index.js'
 
 const pub_ips = [
   '44.37.112.180',

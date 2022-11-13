@@ -1,3 +1,4 @@
 'use strict'
 
-module.exports = require('./lib').default
+import is_ip_private from './lib/index.js'
+export default is_ip_private
