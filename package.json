@@ -1,6 +1,6 @@
 {
   "name": "private-ip",
-  "version": "2.3.4",
+  "version": "3.0.0",
   "description": "Check if IP address is private.",
   "exports": "./index.js",
   "type": "module",
