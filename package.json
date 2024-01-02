@@ -2,7 +2,12 @@
   "name": "private-ip",
   "version": "3.0.1",
   "description": "Check if IP address is private.",
-  "exports": "./index.js",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./index.js"
+    }
+  },
   "type": "module",
   "types": "lib/index.d.ts",
   "repository": {
