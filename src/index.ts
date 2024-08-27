@@ -1,6 +1,6 @@
+import { isIP } from 'node:net'
 import { Netmask } from 'netmask'
 import ip_regex from 'ip-regex'
-import { isIP } from '@chainsafe/is-ip'
 import ipaddr, { IPv4 } from 'ipaddr.js'
 const { isValid: is_valid, parse } = ipaddr
 
