@@ -180,8 +180,26 @@ const invalid_ips = [
   '::ffff:0.255.255.255.255',
 ]
 
-pub_ips.forEach(ip_addr => test(`IP ${ip_addr.toString()} should be public`, t => t.false(is_ip_private(ip_addr))))
+// IPv4-mapped IPv6 addresses in the notations URL parsers and clients produce.
+// Regression: '::ffff:7f00:1' (what new URL() makes of '[::ffff:127.0.0.1]') was reported as public.
+const priv_mapped_ips = [
+  '::ffff:7f00:1',
+  '::FFFF:127.0.0.1',
+  '::FFFF:7F00:0001',
+  '::ffff:a9fe:a9fe',
+  '::ffff:0a00:0001',
+  '::ffff:c0a8:0101'
+]
 
-priv_ips.forEach(ip_addr => test(`IP ${ip_addr.toString()} should be private`, t => t.true(is_ip_private(ip_addr))))
+const pub_mapped_ips = [
+  '::ffff:808:808',
+  '::ffff:8.8.8.8',
+  '::FFFF:8.8.8.8',
+  '::ffff:0808:0808'
+]
+
+pub_ips.concat(pub_mapped_ips).forEach(ip_addr => test(`IP ${ip_addr.toString()} should be public`, t => t.false(is_ip_private(ip_addr))))
+
+priv_ips.concat(priv_mapped_ips).forEach(ip_addr => test(`IP ${ip_addr.toString()} should be private`, t => t.true(is_ip_private(ip_addr))))
 
 invalid_ips.forEach(ip_addr => test(`IP ${ip_addr.toString()} should be undefined`, t => t.is(is_ip_private(ip_addr), undefined)))

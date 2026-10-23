@@ -1,7 +1,7 @@
 import { Netmask } from 'netmask'
 import ip_regex from 'ip-regex'
 import { isIP } from '@chainsafe/is-ip'
-import ipaddr, { IPv4 } from 'ipaddr.js'
+import ipaddr, { IPv4, IPv6 } from 'ipaddr.js'
 const { isValid: is_valid, parse } = ipaddr
 
 const PRIVATE_IP_RANGES = [
@@ -62,7 +62,14 @@ export default (ip: string): boolean | undefined => {
     const parsed = parse(ip)
 
     if (parsed.kind() === 'ipv4') return ipv4_check((parsed as IPv4).toNormalizedString())
-    else if (parsed.kind() === 'ipv6') return ipv6_check(ip)
+    else if (parsed.kind() === 'ipv6') {
+      // IPv4-mapped addresses are checked by their embedded IPv4 address, whatever the notation
+      // (hex, uppercase, dotted). The regexes in ipv6_check only match the dotted, lowercase form,
+      // and URL parsers canonicalize ::ffff:127.0.0.1 to ::ffff:7f00:1.
+      const v6 = parsed as IPv6
+      if (v6.isIPv4MappedAddress()) return ipv4_check(v6.toIPv4Address().toNormalizedString())
+      return ipv6_check(ip)
+    }
   } else if (isIP(ip) && ip_regex.v6().test(ip)) return ipv6_check(ip)
 
   return undefined
